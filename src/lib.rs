@@ -54,7 +54,7 @@ where
 
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {
-        match self.0.resume() {
+        match unsafe { self.0.resume() } {
             GeneratorState::Yielded(n) => Some(n),
             GeneratorState::Complete(()) => None,
         }

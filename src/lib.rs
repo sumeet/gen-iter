@@ -56,7 +56,7 @@ where
 
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {
-        match Pin::new(&mut self.0).resume() {
+        match Pin::new(&mut self.0).resume(()) {
             GeneratorState::Yielded(n) => Some(n),
             GeneratorState::Complete(()) => None,
         }
